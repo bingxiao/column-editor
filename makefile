@@ -1,5 +1,5 @@
 
-pyfiles=hcol.py hcut.py hjoin.py hhead.py
+pyfiles=hcut.py hjoin.py hhead.py
 dest=${HOME}/linux/orphan_script
 
 a:
