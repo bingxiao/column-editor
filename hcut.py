@@ -35,6 +35,7 @@ if fn == '-':
 elif not os.path.isfile( fn ):
     print >>sys.stderr, 'File does not exist: <%s>'%fn
     exit( 0 )
+else:
     handler = open( fn )
     
 # print argv

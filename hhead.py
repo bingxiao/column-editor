@@ -2,7 +2,7 @@
 
 # just show file columns by numbering.
 
-import sys
+import sys,os
 
 
 
@@ -12,12 +12,13 @@ if not sys.stdin.isatty():
 elif sys.argv[ 1 ] == '-':
     if len( sys.argv ) > 2: print >>sys.stderr, 'Note that hcol ONLY handle <stdin> or only 1 file at once!'
     handler = sys.stdin
-elif not os.path.isfile( fn ):
+elif not os.path.isfile( sys.argv[ 1 ] ):
+    print >>sys.stderr, 'File does not exist: <%s>'%sys.argv[ 1 ]
+    exit( 0 )
+else:
     if len( sys.argv ) > 2: print >>sys.stderr, 'Note that hcol ONLY handle <stdin> or only 1 file at once!'
     argv = sys.argv[ 1 ]
     fn = argv
-    print >>sys.stderr, 'File does not exist: <%s>'%fn
-    exit( 0 )
     handler = open( fn )
 
 table = []

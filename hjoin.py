@@ -12,6 +12,8 @@ Note: the input files must ALWAYS be deliminated by TABs.
 parser = OptionParser( usage )
 parser.add_option( "-a", "--a", dest='col1', help='by which column in file 1. A number' )
 parser.add_option( "-b", "--b", dest='col2', help='by which column in file 2. A number' )
+parser.add_option( "-r", "--reverse", action="store_true", dest="reverse", default=False, help="Substract B file from A file instead of really JOIN.")
+#parser.add_option( "-v", "--verbose", action="store_true", dest="verbose", default=False, help="Verbose output A file.")
 ( options, args ) = parser.parse_args()
 
 try:
@@ -57,8 +59,12 @@ for line in handler:
     if line.startswith( '#' ): continue
     items = line.strip( '\n\r' ).split( '\t' )
     key = items[ col1 - 1 ]
-    if key in db:
-        print '\t'.join( items + db[ key ] )
+    if options.reverse:
+        if key not in db:
+            print '\t'.join( items )
+    else:
+        if key in db:
+            print '\t'.join( items + db[ key ] )
 
 handler.close()
 
