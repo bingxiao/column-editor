@@ -47,7 +47,8 @@ flag_diffField = False
 segment_stack = None
 for line in handler:
     if line.startswith( '#' ) or not line.strip():
-        print line.strip( '\n\r' )  # the same as previous.
+        print line.strip( '\n\r' )  # keep the comment lines.
+        continue
     items = line.strip( '\n\r' ).split( '\t' )
     if segment_stack == None:
         max_col = len( items )
